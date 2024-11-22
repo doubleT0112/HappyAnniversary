@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Anniversary</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&family=Dancing+Script:wght@700&family=Great+Vibes&family=Merriweather:wght@700&family=Amatic+SC:wght@700&display=swap" rel="stylesheet">
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes heartBeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+
+        @keyframes moveHeart {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #e74c3c; }
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: url('https://png.pngtree.com/background/20211215/original/pngtree-floating-falling-pink-heart-shaped-seamless-love-background-picture-image_1451529.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+            padding: 20px;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 2s;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4.55em; /* Tăng 1.3 lần so với 3.5em */
+            color: #e74c3c;
+            animation: fadeIn 3s ease-in-out;
+        }
+
+        p {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2em;
+            color: #2c3e50;
+            margin: 0;
+        }
+
+        .writing-effect {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 3px solid #e74c3c;
+            width: 0;
+            animation: typing 2s steps(40, end) forwards, blink-caret 0.75s step-end infinite;
+        }
+
+        .heart-container {
+            margin-top: 20px;
+        }
+
+        .heart {
+            width: 100px;
+            height: 100px;
+            fill: #ff0000; /* Màu đỏ tươi */
+            animation: heartBeat 1s infinite, moveHeart 2s infinite;
+        }
+
+        .countdown {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-top: 20px;
+            animation: fadeIn 6s ease-in-out;
+        }
+
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .countdown-item {
+            margin: 0 10px;
+            text-align: center;
+        }
+
+        .countdown-item span {
+            display: block;
+            font-family: 'Merriweather', serif;
+            font-size: 2.5em;
+            color: #e74c3c;
+        }
+
+        .countdown-item div {
+            font-family: 'Amatic SC', cursive;
+            font-size: 1.5em;
+            color: #2c3e50;
+        }
+    </style>
+    <script>
+        function showIntro() {
+            let answer = prompt("Vui lòng nhập mật khẩu để đăng nhập vào trái tim anh: Embe có yêu a hong?");
+            if (answer.toLowerCase() === "có" || answer.toLowerCase() === "yêu" || answer.toLowerCase().includes("đồng ý")) {
+                let date = prompt("Nhập ngày kỷ niệm (dd-mm-yyyy):");
+                if (date === "01-12-2017") {
+                    document.getElementById('main-content').style.display = 'block';
+                    playMusic();
+                } else {
+                    alert("Ngày kỷ niệm không đúng. Vui lòng thử lại!");
+                    showIntro();
+                }
+            } else {
+                alert("Yêu cầu nhập đúng để tiếp tục!");
+                showIntro();
+            }
+        }
+
+        function playMusic() {
+            const audio = new Audio('https://www.nghenhac.online/track/1536/chuyen-djoi-ta');
+            audio.play();
+        }
+
+        window.onload = function() {
+            showIntro();
+        }
+    </script>
+</head>
+<body>
+    <div id="main-content" style="display:none;">
+        <h1>Happy 7th Anniversary!</h1>
+        <p class="writing-effect">It's been an amazing journey together. Here's to many more years of love and happiness!</p>
+        <div class="heart-container">
+            <svg class="heart" viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+        </div>
+        <div class="countdown" id="countdown"></div>
+        <div class="countdown-container">
+            <div class="countdown-item">
+                <span id="days">0</span>
+                <div>Days</div>
+            </div>
+            <div class="countdown-item">
+                <span id="hours">0</span>
+                <div>Hours</div>
+            </div>
+            <div class="countdown-item">
+                <span id="minutes">0</span>
+                <div>Minutes</div>
+            </div>
+            <div class="countdown-item">
+                <span id="seconds">0</span>
+                <div>Seconds</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function calculateTime(startDate) {
+            const start = new Date(startDate);
+            const today = new Date();
+            const timeDifference = today - start;
+
+            const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+            const hoursDifference = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutesDifference = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+            const secondsDifference = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = daysDifference;
+            document.getElementById('hours').textContent = hoursDifference;
+            document.getElementById('minutes').textContent = minutesDifference;
+            document.getElementById('seconds').textContent = secondsDifference;
+        }
+
+        setInterval(calculateTime, 1000, '2017-12-01');
+    </script>
+</body>
+</html>
